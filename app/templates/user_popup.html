@@ -17,6 +17,18 @@
             <p>
                     Last seen: {{ moment(user.last_seen).format('LLL') }}
             </p>
+            {% if user == current_user %}
+                <p>
+                    <a href="{{ url_for('edit_profile') }}">Edit profile</a>
+                </p>
+            {% endif %}
+            {% if user != current_user %}
+                <p>
+                    <a href=" {{ url_for('send_message', recipient=user.username) }} ">
+                        Send private message'
+                    </a>
+                </p>
+            {% endif %}
         </td>        
     </tr>
 </table>
