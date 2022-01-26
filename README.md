@@ -118,7 +118,7 @@ class Message(db.Model):
 
 # Remember to define the relationship between the `Message` and `User` models.
 ```
-The interesting thing with this table is that we define two foreign keys for the sender and the recipient, both of whom are users. This relationship is defined in the `User` table.
+The interesting thing with this table is that we define two foreign keys, one for the sender and another for the recipient, both of whom are users. This relationship is defined in the `User` table.
 
 
 ### Count Number of Unread Messages
@@ -285,7 +285,7 @@ Clients can only request messages since a given time. This is to prevent them fr
 
 ### Dynamic Notification Badges
 
-To improve user experience, the application can oll for new messages and update the badge count dynamically. Using JQuery, we can execute a function when a page loads. 
+To improve a user's experience, the application can poll for new messages and update the badge count dynamically. Using JQuery, we can execute a function when a page loads. Ajaxs allows us to send asynchronous reequest to the server.
 
 ```js
 {% if current_user.is_authenticated %}
