@@ -306,3 +306,7 @@ To improve a user's experience, the application can poll for new messages and up
 {% endif %}
 ```
 `setInterval` works similarly to `setTimeout`, except that it will execute the function repeatedly, with a fixed time delay between each execution.
+
+## Reference:
+
+Learn how to implement this feature from scratch by looking at this [user notification tutorial](https://github.com/GitauHarrison/notes/blob/master/flask_popover/user_notifications.md).
