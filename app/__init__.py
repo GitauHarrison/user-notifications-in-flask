@@ -29,7 +29,7 @@ if not app.debug:
         if not os.path.exists('logs'):
             os.mkdir('logs')
         file_handler = RotatingFileHandler(
-            'logs/flask_popovers.log',
+            'logs/user_notification.log',
             maxBytes=10240,
             backupCount=10
             )
@@ -39,6 +39,6 @@ if not app.debug:
         app.logger.addHandler(file_handler)
 
     app.logger.setLevel(logging.INFO)
-    app.logger.info('Flask Popovers')
+    app.logger.info('User Notification startup')
 
 from app import routes, errors, models
