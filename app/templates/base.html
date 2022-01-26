@@ -14,9 +14,9 @@
 <!-- The title of our application is defined here -->
 {% block title %}
     {% if title %}
-        {{ title }} - Flask Popover
+        {{ title }} - Notifications
     {% else %}
-        Flask Popovers
+        User Notifications
     {% endif %}
 {% endblock %}
 
@@ -31,7 +31,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href=" {{ url_for('index') }} ">Flask Popover</a>
+            <a class="navbar-brand" href=" {{ url_for('index') }} ">User Notifications</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">            
             <ul class="nav navbar-nav navbar-right">
