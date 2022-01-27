@@ -1,6 +1,6 @@
 # Implement User Notifications In Flask
 
-This is continuation of improving a user's experience within a flask chat application. Previously, in the [flask popover project](https://github.com/GitauHarrison/flask-popovers), you can see how to implement the popover component when a mouse hovers over a user's name. This project builds on that feature and adds private messaging. Every time a user receives a message, we want the application to notify the recipient that indeed there is a new message in the inbox. The recipient does not have to do anything to see the notifications since the application can automatically display them (notification, not message) when they come.
+This is a continuation of improving a user's experience within a flask chat application. Previously, in the [flask popover project](https://github.com/GitauHarrison/flask-popovers), you can see how to implement the popover component when a mouse hovers over a user's name. This project builds on that feature and adds private messaging. Every time a user receives a message, we want the application to notify the recipient that indeed there is a new message in the inbox. The recipient does not have to do anything to see the notifications since the application can automatically display them (notification, not message) when they come.
 
 ![Notifications](/app/static/images/notifications.gif)
 
@@ -35,7 +35,9 @@ User 2:
  - Username: gitau
  - Password: 12345678
 
- Alternatively, you can create your own user. Click on the [registration link](https://user-notifications.herokuapp.com/register). You will be redirected to the [login page](https://user-notifications.herokuapp.com/login) after a successful registration.
+Alternatively, you can create your own user. Click on the [registration link](https://user-notifications.herokuapp.com/register). You will be redirected to the [login page](https://user-notifications.herokuapp.com/login) after a successful registration.
+
+Check out steps 9, 10 and 11 below to see how the notification feature works.
 
 ## Testing The Application On Your Local Machine
 
@@ -189,12 +191,12 @@ def messages():
         prev_url=prev_url)
 ```
 
-In the `messages.html` template, we can loop through `messages`:
+In the `messages.html` template, we can loop through all `messages`:
 
 ```python
 {% for post in messages %}
     {% include '_post.html' %}
-{% endofr %}
+{% endfor %}
 ```
 
 ### Notification Badge
@@ -254,7 +256,7 @@ The two places in the application that will need to be updated so the notication
         user.add_notification('unread_message_count', user.new_messages())
         db.session.commit()
     ```
-
+    - When a new message is sent, then we need to update a user's notification badge
  - when viewing messages (URL: `/messages`)
      
     ```python
@@ -264,6 +266,7 @@ The two places in the application that will need to be updated so the notication
         current_user.add_notification('unread_message_count', 0)
         db.session.commit()
     ```
+    - When a user clicks on the "messages" page to read the messages, then we need to reset the badge to 0.
 
 ### Retrieve Notifcations
 
@@ -285,7 +288,7 @@ Clients can only request messages since a given time. This is to prevent them fr
 
 ### Dynamic Notification Badges
 
-To improve a user's experience, the application can poll for new messages and update the badge count dynamically. Using JQuery, we can execute a function when a page loads. Ajaxs allows us to send asynchronous reequest to the server.
+To improve a user's experience, the application can poll for new messages and update the badge count dynamically. Using JQuery, we can execute a function when a page loads. Ajax allows us to send asynchronous request to the server.
 
 ```js
 {% if current_user.is_authenticated %}
